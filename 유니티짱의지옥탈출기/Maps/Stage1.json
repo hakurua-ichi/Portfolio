@@ -1,0 +1,111 @@
+{
+  "stageNumber": 1,
+  "stageName": "First Steps - Learn to Jump!",
+  "background": "Assets/background/background1.jpg",
+  "playerStart": {
+    "x": 150,
+    "y": 550
+  },
+  "mapBounds": {
+    "width": 1280,
+    "height": 1500,
+    "minY": -1200
+  },
+  "platforms": [
+    {
+      "x": 50,
+      "y": 650,
+      "w": 1180,
+      "h": 40,
+      "comment": "시작 지점 - 튜토리얼"
+    },
+    {
+      "x": 450,
+      "y": 480,
+      "w": 380,
+      "h": 35,
+      "comment": "1. 기본 점프 연습 (170px)"
+    },
+    {
+      "x": 250,
+      "y": 300,
+      "w": 320,
+      "h": 35,
+      "comment": "2. 왼쪽 점프 (180px, 200px 거리)"
+    },
+    {
+      "x": 700,
+      "y": 120,
+      "w": 320,
+      "h": 35,
+      "comment": "3. 오른쪽 점프 (180px, 250px 거리)"
+    },
+    {
+      "x": 400,
+      "y": -70,
+      "w": 400,
+      "h": 40,
+      "comment": "4. 휴식 발판 (190px)"
+    },
+    {
+      "x": 180,
+      "y": -260,
+      "w": 280,
+      "h": 35,
+      "comment": "5. 정밀 점프 시작 (190px, 220px)"
+    },
+    {
+      "x": 780,
+      "y": -450,
+      "w": 260,
+      "h": 35,
+      "comment": "6. 긴 점프 연습 (190px, 300px)"
+    },
+    {
+      "x": 200,
+      "y": -650,
+      "w": 240,
+      "h": 35,
+      "comment": "7. 마지막 도전 (200px, 280px)"
+    },
+    {
+      "x": 500,
+      "y": -850,
+      "w": 400,
+      "h": 45,
+      "comment": "골! Stage2로 (200px)"
+    }
+  ],
+  "obstacles": [
+    {
+      "type": "wall",
+      "x": 600,
+      "y": -240,
+      "w": 35,
+      "h": 80,
+      "comment": "벽 장애물 1 - 우회 학습"
+    }
+    ,
+    {
+      "type": "spring",
+      "x": 550,
+      "y": 470,
+      "w": 80,
+      "h": 10,
+      "force": 12,
+      "direction": "left",
+      "comment": "스파이크 대체: 좌/우 튕김으로 플레이어를 방해 (좌측으로 튕김)",
+      "note": "changed direction from up -> left per request"
+    },
+    {
+      "type": "cannon",
+      "x": 760,
+      "y": 60,
+      "w": 50,
+      "h": 50,
+      "rate": 2000,
+      "dir": "left",
+      "comment": "튜토리얼 후반부 도전용 느린 대포"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "title": "InsideFront",
+  "artist": "hakurua",
+  "bpm": 143,
+  "musicFile": "InsideFront.mp3",
+  "imageFile": "Inside.png",
+  "charts": {
+    "Epic": {
+      "file": "chart_epic.json",
+      "level": 20,
+      "hpMax": 100,
+      "hpDrain": 10,
+      "hpRegen": 1.0
+    }
+  }
+}

@@ -1,0 +1,172 @@
+{
+  "stageNumber": 2,
+  "stageName": "The Gauntlet - Obstacles Ahead!",
+  "background": "Assets/background/background2.jpg",
+  "playerStart": {
+    "x": 640,
+    "y": -880
+  },
+  "mapBounds": {
+    "width": 1280,
+    "height": 4000,
+    "minY": -3500
+  },
+  "platforms": [
+    {
+      "x": 50,
+      "y": -830,
+      "w": 1180,
+      "h": 40,
+      "comment": "Stage2 시작"
+    },
+    {
+      "x": 200,
+      "y": -1020,
+      "w": 350,
+      "h": 35,
+      "comment": "1. 왼쪽 (190px)"
+    },
+    {
+      "x": 750,
+      "y": -1210,
+      "w": 320,
+      "h": 35,
+      "comment": "2. 오른쪽 (190px)"
+    },
+    {
+      "x": 300,
+      "y": -1410,
+      "w": 300,
+      "h": 40,
+      "comment": "3. 휴식 발판 (200px)"
+    },
+    {
+      "x": 750,
+      "y": -1610,
+      "w": 280,
+      "h": 35,
+      "comment": "4. 오른쪽 (200px)"
+    },
+    {
+      "x": 200,
+      "y": -1820,
+      "w": 260,
+      "h": 35,
+      "comment": "5. 벽 우회 (210px)"
+    },
+    {
+      "x": 700,
+      "y": -2030,
+      "w": 300,
+      "h": 40,
+      "comment": "6. 휴식 (210px)"
+    },
+    {
+      "x": 250,
+      "y": -2250,
+      "w": 280,
+      "h": 35,
+      "comment": "7. 대포 구간 (220px)"
+    },
+    {
+      "x": 750,
+      "y": -2470,
+      "w": 260,
+      "h": 35,
+      "comment": "8. 대포 회피 (220px)"
+    },
+    {
+      "x": 300,
+      "y": -2700,
+      "w": 280,
+      "h": 35,
+      "comment": "9. 함정 주의 (230px)"
+    },
+    {
+      "x": 450,
+      "y": -2940,
+      "w": 380,
+      "h": 45,
+      "comment": "골! Stage3로 (240px)"
+    }
+  ],
+  "obstacles": [
+    {
+      "type": "wall",
+      "x": 550,
+      "y": -1800,
+      "w": 35,
+      "h": 90,
+      "comment": "벽 1 - 우회 가능"
+    },
+    {
+      "type": "cannon",
+      "x": 1100,
+      "y": -2320,
+      "w": 50,
+      "h": 50,
+      "rate": 4000,
+      "dir": "left",
+      "comment": "대포 1 - 느림"
+    },
+    {
+      "type": "cannon",
+      "x": 100,
+      "y": -2540,
+      "w": 50,
+      "h": 50,
+      "rate": 4500,
+      "dir": "right",
+      "comment": "대포 2 - 더 느림"
+    },
+    {
+      "type": "lethalFloor",
+      "x": 320,
+      "y": -2710,
+      "w": 120,
+      "h": 10,
+      "comment": "함정 - 9번 발판 일부"
+    }
+    ,
+    {
+      "type": "cannon",
+      "x": 680,
+      "y": -2730,
+      "w": 50,
+      "h": 50,
+      "rate": 2200,
+      "dir": "right",
+      "comment": "추가 대포 - 왼쪽에 배치, 플랫폼 위에 선 플레이어를 노림"
+    }
+    ,
+    {
+      "type": "spring",
+      "x": 250,
+      "y": -2260,
+      "w": 80,
+      "h": 10,
+      "force": 12,
+      "direction": "left",
+      "comment": "스파이크 대체: 좌측으로 튕겨내는 스프링 (방해용)",
+      "note": "changed direction from up -> left per request"
+    },
+    {
+      "type": "cannon",
+      "x": 740,
+      "y": -1280,
+      "w": 50,
+      "h": 50,
+      "rate": 3000,
+      "dir": "left",
+      "comment": "2번 발판 앞쪽에 배치된 중간 속도 대포"
+    },
+    {
+      "type": "wall",
+      "x": 300,
+      "y": -1880,
+      "w": 35,
+      "h": 80,
+      "comment": "플랫폼 우회를 유도하는 벽(중간 난이도)"
+    }
+  ]
+}

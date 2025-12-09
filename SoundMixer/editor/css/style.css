@@ -1,0 +1,153 @@
+/* 기본 설정 */
+body { 
+    margin: 0; 
+    background: #1e1e1e; 
+    color: #fff; 
+    font-family: sans-serif; 
+    height: 100vh; 
+    overflow: hidden; /* 전체 페이지 스크롤 방지 */
+}
+
+.editor-container { 
+    display: flex; 
+    height: 100%; 
+}
+
+/* 1. 캔버스 영역 (왼쪽) */
+.canvas-wrapper {
+    flex: 1; 
+    background: #111; 
+    overflow-y: scroll; /* 캔버스는 항상 스크롤 가능 */
+    position: relative; 
+    border-right: 2px solid #333;
+    
+    /* 스크롤바 스타일링 */
+    scrollbar-width: thin; 
+    scrollbar-color: #444 #111;
+}
+
+/* 캔버스 중앙 정렬 */
+canvas { 
+    display: block; 
+    margin: 0 auto; 
+    background: #050505; 
+    cursor: crosshair; 
+}
+
+/* 2. 사이드바 (오른쪽) */
+.sidebar {
+    width: 320px; 
+    background: #252526; 
+    padding: 20px; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 15px;
+    box-shadow: -5px 0 20px rgba(0,0,0,0.5); 
+    z-index: 10;
+    
+    /* [핵심] 높이를 100vh로 고정하고 넘치면 스크롤 생성 */
+    height: 100vh;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+/* 사이드바 스크롤바 꾸미기 */
+.sidebar::-webkit-scrollbar { width: 8px; }
+.sidebar::-webkit-scrollbar-thumb { background: #444; border-radius: 4px; }
+.sidebar::-webkit-scrollbar-track { background: #222; }
+
+/* 패널 그룹 스타일 */
+.panel-group { 
+    background: #333; 
+    padding: 15px; 
+    border-radius: 6px; 
+    flex-shrink: 0; /* 스크롤 시 찌그러짐 방지 */
+}
+
+/* 타이틀 및 텍스트 */
+h2 { 
+    margin: 0 0 20px 0; 
+    color: #00d2ff; 
+    text-align: center; 
+    letter-spacing: 2px; 
+}
+
+h3 { 
+    margin: 0 0 10px 0; 
+    border-bottom: 1px solid #555; 
+    font-size: 13px; 
+    color: #aaa; 
+    padding-bottom: 5px; 
+}
+
+.hint { 
+    font-size: 11px; 
+    color: #888; 
+    margin-top: 10px; 
+    line-height: 1.6; 
+}
+
+.info { 
+    font-size: 13px; 
+    margin-bottom: 10px; 
+    background: #222; 
+    padding: 5px; 
+}
+
+.status { 
+    font-size: 12px; 
+    color: #888; 
+    margin-bottom: 5px; 
+    text-align: center; 
+}
+
+/* 버튼 스타일 */
+button {
+    width: 100%; 
+    padding: 10px; 
+    margin-top: 5px; 
+    background: #444; 
+    border: 1px solid #555;
+    color: #fff; 
+    cursor: pointer; 
+    border-radius: 4px; 
+    font-weight: bold; 
+    transition: 0.2s;
+}
+
+button:hover { 
+    background: #555; 
+    border-color: #777; 
+}
+
+/* 특정 버튼 색상 */
+#btn-play { background: #00d2ff; color: #000; }
+#btn-export { background: #2ecc71; color: #000; }
+#btn-auto-gen { background: #d35400; color: #fff; border: 1px solid #e67e22; }
+#btn-auto-gen:hover { background: #e67e22; }
+
+/* 컨트롤러 UI */
+.btn-row { display: flex; gap: 5px; }
+
+.time-display { 
+    font-size: 32px; 
+    font-family: 'Courier New', monospace; 
+    text-align: center; 
+    margin-bottom: 10px; 
+    color: #0f0; 
+    background: #000; 
+    padding: 5px; 
+    border-radius: 4px; 
+}
+
+/* 입력 필드 */
+input[type="file"] { width: 100%; font-size: 12px; }
+input[type="range"] { width: 100%; cursor: pointer; margin-top: 5px;}
+input[type="number"] { 
+    width: 100%; 
+    padding: 5px; 
+    background: #111; 
+    border: 1px solid #555; 
+    color: #fff; 
+    box-sizing: border-box;
+}

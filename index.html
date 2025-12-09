@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="portfolio/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="particles"></div>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <span class="brand-text">Portfolio</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home" class="active">홈</a></li>
+            <li><a href="#web-games">웹 게임</a></li>
+            <li><a href="#unity-projects">Unity</a></li>
+            <li><a href="#other-projects">기타</a></li>
+            <li><a href="#skills">기술</a></li>
+            <li><a href="#about">소개</a></li>
+            <li><a href="#contact">연락처</a></li>
+        </ul>
+        <button class="nav-toggle" aria-label="메뉴 열기">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="glitch" data-text="PORTFOLIO">PORTFOLIO</h1>
+            <p class="hero-subtitle">개발자 포트폴리오</p>
+            <p class="hero-description">게임, 웹, 애플리케이션 등 다양한 개발 프로젝트를 소개합니다</p>
+            <p class="hero-description sub">일부 프로젝트는 LLM의 도움을 받아 개발되었습니다.</p>
+            <div class="hero-buttons">
+                <a href="#web-games" class="cta-button">
+                    <span>프로젝트 보기</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+                <a href="#about" class="cta-button secondary">
+                    <span>About Me</span>
+                </a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>스크롤</span>
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+        </div>
+    </section>
+    <section id="web-games" class="projects">
+        <div class="section-header">
+            <h2 class="section-title">WEB GAMES</h2>
+            <p class="section-subtitle">웹 기반 게임 프로젝트</p>
+        </div>
+
+        <div class="project-grid">
+            <article class="project-card featured" data-category="게임">
+                <div class="card-image">
+                    <div class="placeholder-image rhythm">
+                        <span class="game-icon">🎵</span>
+                    </div>
+                    <div class="card-overlay">
+                        <span class="project-category">리듬 게임</span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3>SoundMixer</h3>
+                    <p class="project-description">
+                        Live2D 캐릭터와 함께하는 리듬 게임. 
+                        노트 에디터, 스킨 시스템, 멀티 트랙 오디오 등 
+                        전문적인 리듬 게임 시스템을 구현했습니다.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Canvas</span>
+                        <span class="tech-tag">Live2D</span>
+                        <span class="tech-tag">Web Audio API</span>
+                    </div>
+                    <div class="card-actions">
+                        <a href="SoundMixer/index.html" target="_blank" class="play-btn primary">
+                            <span>플레이</span>
+                        </a>
+                        <a href="SoundMixer/editor/index.html" target="_blank" class="play-btn secondary">
+                            <span>에디터</span>
+                        </a>
+                    </div>
+                </div>
+            </article>
+            <article class="project-card" data-category="게임">
+                <div class="card-image">
+                    <div class="placeholder-image shooter">
+                        <span class="game-icon">🚀</span>
+                    </div>
+                    <div class="card-overlay">
+                        <span class="project-category">슈팅 게임</span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3>Galaxy Defender</h3>
+                    <p class="project-description">
+                        동방프로젝트 스타일의 탄막 슈팅 게임. 
+                        5개 스테이지, 3가지 난이도, 다양한 보스 패턴과 
+                        캐릭터별 고유 능력을 구현했습니다.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Canvas</span>
+                        <span class="tech-tag">Firebase</span>
+                    </div>
+                    <div class="card-actions">
+                        <a href="Galaxy_Defender/index.html" target="_blank" class="play-btn primary">
+                            <span>플레이</span>
+                        </a>
+                    </div>
+                </div>
+            </article>
+            <article class="project-card" data-category="게임">
+                <div class="card-image">
+                    <div class="placeholder-image platformer">
+                        <span class="game-icon">🏃</span>
+                    </div>
+                    <div class="card-overlay">
+                        <span class="project-category">플랫포머</span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3>유니티짱의 지옥탈출기</h3>
+                    <p class="project-description">
+                        점프킹 스타일의 하드코어 플랫포머 게임. 
+                        차징 점프 시스템, JSON 기반 맵 로딩, 
+                        스프라이트 애니메이션을 구현했습니다.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Canvas</span>
+                        <span class="tech-tag">JSON Map</span>
+                        <span class="tech-tag">Sprite Animation</span>
+                    </div>
+                    <div class="card-actions">
+                        <a href="유니티짱의지옥탈출기/index.html" target="_blank" class="play-btn primary">
+                            <span>플레이</span>
+                        </a>
+                    </div>
+                </div>
+            </article>
+            <article class="project-card" data-category="게임">
+                <div class="card-image">
+                    <div class="placeholder-image puzzle">
+                        <span class="game-icon">⚾</span>
+                    </div>
+                    <div class="card-overlay">
+                        <span class="project-category">퍼즐</span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3>숫자야구</h3>
+                    <p class="project-description">
+                        클래식 숫자 추리 게임. 
+                        스트라이크/볼 판정 시스템과 
+                        게임 로그 기능을 구현했습니다.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">HTML/CSS</span>
+                    </div>
+                    <div class="card-actions">
+                        <a href="number-baseball/index.html" target="_blank" class="play-btn primary">
+                            <span>플레이</span>
+                        </a>
+                    </div>
+                </div>
+            </article>
+            <article class="project-card" data-category="게임">
+                <div class="card-image">
+                    <div class="placeholder-image word">
+                        <span class="game-icon">💬</span>
+                    </div>
+                    <div class="card-overlay">
+                        <span class="project-category">워드 게임</span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3>끝말잇기</h3>
+                    <p class="project-description">
+                        멀티플레이어 끝말잇기 게임. 
+                        턴제 시스템과 단어 검증 기능을 
+                        구현했습니다.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">HTML/CSS</span>
+                    </div>
+                    <div class="card-actions">
+                        <a href="word-relay/word-relay.html" target="_blank" class="play-btn primary">
+                            <span>플레이</span>
+                        </a>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section id="unity-projects" class="projects">
+        <div class="section-header">
+            <h2 class="section-title">UNITY PROJECTS</h2>
+            <p class="section-subtitle">Unity 기반 게임 프로젝트</p>
+        </div>
+
+        <div class="project-grid">
+            <article class="project-card featured" data-category="게임">
+                <div class="card-image">
+                    <div class="placeholder-image multiplayer">
+                        <span class="game-icon">🎭</span>
+                    </div>
+                    <div class="card-overlay">
+                        <span class="project-category">추리 / 탈출</span>
+                        <span class="project-status wip">개발 중</span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3>어몽어스류 대탈출 (가제)</h3>
+                    <p class="project-description">
+                        어몽어스 스타일의 멀티플레이어 추리 탈출 게임.
+                        Unity NGO(Netcode for GameObjects)를 활용한 네트워크 멀티플레이 구현.
+                        프로젝트 관리 및 기획 담당.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Unity 6</span>
+                        <span class="tech-tag">C#</span>
+                        <span class="tech-tag">NGO</span>
+                        <span class="tech-tag">Multiplayer</span>
+                    </div>
+                    <div class="card-actions">
+                        <span class="status-badge">🚧 개발 진행 중</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+    <section id="other-projects" class="projects">
+        <div class="section-header">
+            <h2 class="section-title">OTHER PROJECTS</h2>
+            <p class="section-subtitle">기타 개발 프로젝트</p>
+        </div>
+        <div class="project-grid">
+            <article class="project-card" data-category="도구">
+                <div class="card-image">
+                    <div class="placeholder-image tool">
+                        <span class="game-icon">🔧</span>
+                    </div>
+                    <div class="card-overlay">
+                        <span class="project-category">도구</span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3>준비중</h3>
+                    <p class="project-description">기대해주세요</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">점검중</span>
+                    </div>
+                    <div class="card-actions">
+                        <a href="#" class="play-btn primary"><span>GitHub</span></a>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+    <section id="skills" class="skills-section">
+        <div class="section-header">
+            <h2 class="section-title">SKILLS</h2>
+            <p class="section-subtitle">기술 스택</p>
+        </div>
+        <div class="skills-content">
+            <div class="skills-category">
+                <h3 class="category-title">
+                    <span class="category-icon">💻</span>
+                    프로그래밍 언어
+                </h3>
+                <div class="skills-list">
+                    <div class="skill-item">
+                        <span class="skill-icon">📜</span>
+                        <span class="skill-name">C#</span>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 90%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-icon">🔷</span>
+                        <span class="skill-name">JS</span>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 70%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-icon">🌐</span>
+                        <span class="skill-name">HTML5</span>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 60%"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skills-category">
+                <h3 class="category-title">
+                    <span class="category-icon">🛠️</span>
+                    프레임워크 & 라이브러리
+                </h3>
+                <div class="skills-list">
+                    <div class="skill-item">
+                        <span class="skill-icon">🎮</span>
+                        <span class="skill-name">Unity</span>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 80%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-icon">🎨</span>
+                        <span class="skill-name">HTML5 Canvas</span>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 65%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-icon">💃</span>
+                        <span class="skill-name">Live2D SDK</span>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 50%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-icon">🔊</span>
+                        <span class="skill-name">Web Audio API</span>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 50%"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skills-category">
+                <h3 class="category-title">
+                    <span class="category-icon">⚙️</span>
+                    도구 & 기타
+                </h3>
+                <div class="skills-list">
+                    <div class="skill-item">
+                        <span class="skill-icon">🔥</span>
+                        <span class="skill-name">Firebase</span>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 60%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-icon">📦</span>
+                        <span class="skill-name">Git / GitHub</span>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 70%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-icon">🤖</span>
+                        <span class="skill-name">LLM 활용</span>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 90%"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="credits" class="credits">
+        <div class="section-header">
+            <h2 class="section-title">CREDITS</h2>
+            <p class="section-subtitle">감사의 말</p>
+        </div>
+        
+        <div class="credits-content">
+            <div class="credit-card main-credit">
+                <div class="credit-image">
+                    <img src="portfolio/images/unitychan_license.png" alt="Unity-chan License">
+                </div>
+                <div class="credit-info">
+                    <h3>Unity-chan (유니티짱)</h3>
+                    <p class="credit-description">
+                        이 프로젝트들은 Unity Technologies Japan의 
+                        <strong>유니티짱</strong> 캐릭터를 사용하고 있습니다.
+                    </p>
+                    <p class="credit-license">
+                        © Unity Technologies Japan/UCL
+                    </p>
+                    <a href="https://unity-chan.com/" target="_blank" class="credit-link">
+                        <span>unity-chan.com</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="section-header">
+            <h2 class="section-title">ABOUT</h2>
+            <p class="section-subtitle">소개</p>
+        </div>
+        
+        <div class="about-content">
+            <div class="about-text">
+                <h3>안녕하세요!</h3>
+                <p>
+                    게임 개발에 관심을 가지고 다양한 프로젝트를 진행중인 개발자 지망생 입니다.
+                    현 게임업계의 충족하는 인재가 되기 위해 Unity 부터 Unreal 엔진, 컴퓨터 구조 등.. 학습을 하고 있습니다.
+                </p>
+                
+
+            </div>
+            
+            <div class="stats-container">
+                <div class="stat-card">
+                    <span class="stat-number">6+</span>
+                    <span class="stat-label">프로젝트</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">2+</span>
+                    <span class="stat-label">플랫폼</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">5+</span>
+                    <span class="stat-label">사용 기술</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="section-header">
+            <h2 class="section-title">CONTACT</h2>
+            <p class="section-subtitle">연락처</p>
+        </div>
+        
+        <div class="contact-content">
+            <div class="contact-links">
+                <a href="https://github.com/hakurua-ichi" target="_blank" class="contact-card">
+                    <span class="contact-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </span>
+                    <span class="contact-text">GitHub</span>
+                </a>
+                <a href="mailto:jjxx11301@gmail.com" class="contact-card">
+                    <span class="contact-icon">📧</span>
+                    <span class="contact-text">Email</span>
+                </a>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <p>&copy; 2024 Portfolio. All rights reserved.</p>
+        <p class="footer-sub">Built with HTML, CSS, JavaScript</p>
+    </footer>
+
+    <script src="portfolio/js/main.js"></script>
+</body>
+</html>

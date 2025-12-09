@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Live2D 모션 테스트</title>
+    <meta charset="UTF-8">
+    <!-- PixiJS v7 -->
+    <script src="https://cdn.jsdelivr.net/npm/pixi.js@7.x/dist/pixi.min.js"></script>
+    <!-- Cubism 4 Core -->
+    <script src="https://cubism.live2d.com/sdk-web/cubismcore/live2dcubismcore.min.js"></script>
+    <!-- pixi-live2d-display with LipSync (게임과 동일) -->
+    <script src="https://cdn.jsdelivr.net/npm/pixi-live2d-display-lipsyncpatch/dist/cubism4.min.js"></script>
+    <style>
+        body { margin: 0; padding: 20px; background: #222; color: #fff; font-family: monospace; }
+        canvas { border: 2px solid #0f0; }
+        #controls { margin-top: 10px; }
+        button { margin: 5px; padding: 10px 20px; font-size: 14px; }
+        #log { 
+            margin-top: 20px; 
+            background: #000; 
+            padding: 10px; 
+            height: 300px; 
+            overflow-y: scroll;
+            border: 1px solid #0f0;
+        }
+        .log-entry { margin: 2px 0; }
+        .log-success { color: #0f0; }
+        .log-error { color: #f00; }
+        .log-warn { color: #ff0; }
+    </style>
+</head>
+<body>
+    <h1>🎭 Live2D 모션 인덱스 테스트</h1>
+    <canvas id="canvas" width="800" height="600"></canvas>
+    
+    <div id="controls">
+        <h3>모션 테스트:</h3>
+        <button onclick="testMotion(0)">0: idle_01</button>
+        <button onclick="testMotion(1)">1: idle_02</button>
+        <button onclick="testMotion(2)">2: m_09 (Idle)</button>
+        <br>
+        <button onclick="testMotion(3)">3: m_01 (FlickDown)</button>
+        <button onclick="testMotion(4)">4: m_08 (FlickDown)</button>
+        <button onclick="testMotion(5)">5: m_02 (FlickLeft)</button>
+        <button onclick="testMotion(6)">6: m_03 (FlickRight)</button>
+        <br>
+        <button onclick="testMotion(7)">7: m_04 (FlickUp)</button>
+        <button onclick="testMotion(8)">8: m_06 (FlickUp)</button>
+        <button onclick="testMotion(9)">9: m_13 (FlickUp)</button>
+        <button onclick="testMotion(10)">10: m_05 (Shake)</button>
+        <br>
+        <button onclick="testMotion(11)">11: m_07 (Flick3)</button>
+        <button onclick="testMotion(12)">12: m_11 (Flick3)</button>
+        <button onclick="testMotion(13)">13: m_10 (Tap)</button>
+        <button onclick="testMotion(14)">14: m_12 (Tap)</button>
+        <button onclick="testMotion(15)">15: m_14 (Tap)</button>
+        <br><br>
+        <button onclick="testMissSequence()" style="background:#f00;color:#fff;font-weight:bold;">🔥 MISS 연속 테스트 (3,4,10)</button>
+    </div>
+    
+    <div id="log">
+        <div class="log-entry log-success">✅ 로그 시작...</div>
+    </div>
+
+    <script>
+        // PixiJS를 전역으로 설정
+        window.PIXI = PIXI;
+        
+        let app, model;
+        
+        function log(message, type = 'info') {
+            const logDiv = document.getElementById('log');
+            const entry = document.createElement('div');
+            entry.className = `log-entry log-${type}`;
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            logDiv.appendChild(entry);
+            logDiv.scrollTop = logDiv.scrollHeight;
+            console.log(message);
+        }
+        
+        async function init() {
+            try {
+                // Cubism Core 확인
+                if (typeof window.Live2DCubismCore === 'undefined') {
+                    log('❌ Cubism Core가 로드되지 않았습니다!', 'error');
+                    return;
+                }
+                
+                log('✅ Cubism Core 버전: ' + window.Live2DCubismCore.Version, 'success');
+                log('PixiJS 버전: ' + PIXI.VERSION, 'info');
+                
+                // pixi-live2d-display 확인
+                if (typeof PIXI.live2d === 'undefined') {
+                    log('❌ pixi-live2d-display가 로드되지 않았습니다!', 'error');
+                    return;
+                }
+                log('✅ pixi-live2d-display 로드됨', 'success');
+                
+                log('PixiJS 앱 생성 중...', 'info');
+                app = new PIXI.Application({
+                    view: document.getElementById('canvas'),
+                    width: 800,
+                    height: 600,
+                    backgroundAlpha: 0,
+                    antialias: true,
+                    autoStart: true
+                });
+                
+                log('Live2D 모델 로드 중...', 'info');
+                model = await PIXI.live2d.Live2DModel.from('assets/Live2D/Unity_chan/unitychan.model3.json');
+                
+                model.anchor.set(0.5, 0.5);
+                model.x = 400;
+                model.y = 300;
+                model.scale.set(0.3);
+                
+                app.stage.addChild(model);
+                
+                log('✅ 모델 로드 완료!', 'success');
+                
+                // 모션 매니저 정보 출력
+                const motionManager = model.internalModel?.motionManager;
+                if (motionManager) {
+                    log(`✅ MotionManager 발견`, 'success');
+                    
+                    if (motionManager.motionGroups) {
+                        const groups = Object.keys(motionManager.motionGroups);
+                        log(`모션 그룹 개수: ${groups.length}`, 'success');
+                        log(`모션 그룹: ${groups.join(', ')}`, 'info');
+                        
+                        // 각 그룹의 모션 개수
+                        let totalMotions = 0;
+                        groups.forEach(group => {
+                            const motions = motionManager.motionGroups[group];
+                            const count = Array.isArray(motions) ? motions.length : 0;
+                            log(`  - ${group}: ${count}개 모션`, 'info');
+                            totalMotions += count;
+                        });
+                        log(`📊 전체 모션 개수: ${totalMotions}`, 'success');
+                    } else {
+                        log('⚠️ motionGroups가 없습니다!', 'warn');
+                    }
+                } else {
+                    log('⚠️ MotionManager를 찾을 수 없습니다!', 'warn');
+                }
+                
+                // 초기 모션
+                log('초기 IDLE 모션 재생...', 'info');
+                testMotion(0);
+                
+            } catch (error) {
+                log(`❌ 초기화 실패: ${error.message}`, 'error');
+                console.error('상세 에러:', error);
+            }
+        }
+        
+        function testMotion(index) {
+            try {
+                log(`🎬 모션 재생 시도...`, 'info');
+                
+                // 모션 그룹 매핑 (JSON 순서대로)
+                const motionGroups = [
+                    { group: 'Idle', index: 0, name: 'idle_01' },
+                    { group: 'Idle', index: 1, name: 'idle_02' },
+                    { group: 'Idle', index: 2, name: 'm_09' },
+                    { group: 'FlickDown', index: 0, name: 'm_01' },
+                    { group: 'FlickDown', index: 1, name: 'm_08' },
+                    { group: 'FlickLeft', index: 0, name: 'm_02' },
+                    { group: 'FlickRight', index: 0, name: 'm_03' },
+                    { group: 'FlickUp', index: 0, name: 'm_04' },
+                    { group: 'FlickUp', index: 1, name: 'm_06' },
+                    { group: 'FlickUp', index: 2, name: 'm_13' },
+                    { group: 'Shake', index: 0, name: 'm_05' },
+                    { group: 'Flick3', index: 0, name: 'm_07' },
+                    { group: 'Flick3', index: 1, name: 'm_11' },
+                    { group: 'Tap', index: 0, name: 'm_10' },
+                    { group: 'Tap', index: 1, name: 'm_12' },
+                    { group: 'Tap', index: 2, name: 'm_14' }
+                ];
+                
+                if (index < 0 || index >= motionGroups.length) {
+                    log(`❌ 잘못된 인덱스: ${index}`, 'error');
+                    return;
+                }
+                
+                const motion = motionGroups[index];
+                log(`📋 모션 정보: ${motion.name} (그룹: ${motion.group}, 인덱스: ${motion.index})`, 'info');
+                
+                // 그룹 기반 모션 재생
+                const result = model.motion(motion.group, motion.index);
+                log(`✅ 모션 재생 성공! 반환값: ${JSON.stringify(result)}`, 'success');
+            } catch (error) {
+                log(`❌ 모션 재생 실패: ${error.message}`, 'error');
+                console.error(error);
+            }
+        }
+        
+        function testMissSequence() {
+            const missIndices = [3, 4, 10]; // m_01, m_08, m_05
+            let i = 0;
+            
+            log('🔥 MISS 모션 연속 테스트 시작 (3초 간격)', 'warn');
+            log('재생 순서: m_01(FlickDown) → m_08(FlickDown) → m_05(Shake)', 'info');
+            
+            const interval = setInterval(() => {
+                if (i >= missIndices.length) {
+                    clearInterval(interval);
+                    log('✅ MISS 테스트 완료!', 'success');
+                    return;
+                }
+                
+                testMotion(missIndices[i]);
+                i++;
+            }, 3000);
+        }
+        
+        init();
+    </script>
+</body>
+</html>

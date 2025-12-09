@@ -1,0 +1,23 @@
+{
+  "title": "Test Track 01",
+  "artist": "Debug User",
+  "bpm": 120,
+  "musicFile": "s1Bbgm.mp3",
+  "imageFile": "cover.png", 
+  "charts": {
+    "NORMAL": {
+      "file": "chart_normal.json",
+      "level": 5,
+      "hpMax": 100,
+      "hpDrain": 10,
+      "hpRegen": 1.0
+    },
+    "HARD": {
+      "file": "chart_hard.json",
+      "level": 10,
+      "hpMax": 120,
+      "hpDrain": 80,
+      "hpRegen": 0.0
+    }
+  }
+}

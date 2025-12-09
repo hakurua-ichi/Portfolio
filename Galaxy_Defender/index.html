@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galaxy Defender</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- 캐릭터 선택 모달 -->
+    <div id="character-select-modal" class="modal">
+        <div class="modal-content">
+            <h2 id="character-select-title">Select Your Ship</h2>
+            <div class="character-list">
+                <div class="character-option" data-type="bomb">
+                    <div class="character-icon">💣</div>
+                    <h3 id="char-bomb-name">Bomber</h3>
+                    <p id="char-bomb-desc">Spell: Area bomb</p>
+                </div>
+                <div class="character-option" data-type="laser">
+                    <div class="character-icon">⚡</div>
+                    <h3 id="char-laser-name">Laser</h3>
+                    <p id="char-laser-desc">Spell: Penetrating laser</p>
+                </div>
+                <div class="character-option" data-type="timeStop">
+                    <div class="character-icon">⏸️</div>
+                    <h3 id="char-time-name">Time Master</h3>
+                    <p id="char-time-desc">Spell: Stop time</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 1. 상단 헤더 UI -->
+    <header class="game-header">
+        <!-- 1-1. 좌측: 게임 이름, 언어 설정 -->
+        <div class="header-left">
+            <h1>GDD Shooter</h1>
+            <select id="language-selector">
+                <option value="ko">한국어</option>
+                <option value="en">English</option>
+            </select>
+        </div>
+        
+        <!-- 1-2. 중앙: 스테이지 진행도 -->
+        <div class="header-center">
+            <span id="current-stage-display">Stage 1</span>
+            <span id="stage-progress-label">스테이지 진행도</span>
+            <progress id="stage-progress" max="100" value="0"></progress>
+        </div>
+        
+        <!-- 1-3. 우측: 게임 제어 -->
+        <div class="header-right">
+            <select id="difficulty-selector">
+                <option value="easy">Easy</option>
+                <option value="normal" selected>Normal</option>
+                <option value="hard">Hard</option>
+            </select>
+            <button id="start-button">Start</button>
+            <button id="pause-button">Pause</button>
+            <button id="reset-button">Reset</button>
+        </div>
+    </header>
+
+    <!-- 2. 메인 컨텐츠 UI -->
+    <main class="game-main">
+        <!-- 2-1. 좌측: 게임 정보 & 조작 키 설명 -->
+        <aside class="panel-left">
+            <h3 id="game-info-title">Game Info</h3>
+            <div id="game-info">
+                <div class="info-item">
+                    <span class="info-label">Score:</span>
+                    <span id="score-display" class="info-value">0</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Lives:</span>
+                    <span id="lives-display" class="info-value">❤️❤️❤️</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Spells:</span>
+                    <span id="spells-display" class="info-value">💣💣💣</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Power:</span>
+                    <span id="power-display" class="info-value">0</span>
+                </div>
+            </div>
+            
+            <h3 id="controls-title">Controls</h3>
+            <ul id="controls-list">
+                <li><span class="key">Move:</span> WASD / ↑↓←→</li>
+                <li><span class="key">Shoot:</span> Z</li>
+                <li><span class="key">Spell:</span> X</li>
+                <li><span class="key">Focus:</span> Shift</li>
+                <li><span class="key">Pause:</span> P</li>
+            </ul>
+            
+            <h3 id="game-guide-title">Game Guide</h3>
+            <div id="game-guide">
+                <p id="guide-stages">Total 5 Stages</p>
+                <p id="guide-power">+1 Support Ship per 10 Power</p>
+                <p id="guide-boss">Boss appears at stage end</p>
+            </div>
+        </aside>
+        
+        <!-- 2-2. 중앙: 게임 캔버스 -->
+        <div class="game-center">
+            <canvas id="game-canvas" width="640" height="720"></canvas>
+        </div>
+        
+        <!-- 2-3. 우측: 리더보드 -->
+        <aside class="panel-right">
+            <h3>Leaderboard</h3>
+            <div id="leaderboard-content">
+                <!-- 랭킹 데이터가 여기에 로드됩니다. -->
+                <p>Loading...</p>
+            </div>
+            
+            <h3 id="volume-title">Volume Settings</h3>
+            <div id="volume-settings">
+                <div class="volume-control">
+                    <label for="bgm-volume" id="bgm-label">BGM: <span id="bgm-value">50</span>%</label>
+                    <input type="range" id="bgm-volume" min="0" max="100" value="50">
+                </div>
+                <div class="volume-control">
+                    <label for="sfx-volume" id="sfx-label">SFX: <span id="sfx-value">50</span>%</label>
+                    <input type="range" id="sfx-volume" min="0" max="100" value="50">
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <!-- 
+      기획서 '개발 순서'에 맞춘 JS 로드 순서 (defer는 순서 보장)
+    -->
+    
+    <!-- 3. 상태 및 전역변수 -->
+    <script src="js/gameState.js" defer></script>
+    
+    <!-- 4. 게임 객체 (프로토타입) -->
+    <script src="js/prototypes/background.js" defer></script>
+    <script src="js/prototypes/explosion.js" defer></script>
+    <script src="js/prototypes/bullet.js" defer></script>
+    <script src="js/prototypes/item.js" defer></script>
+    <script src="js/prototypes/player.js" defer></script>
+    <script src="js/prototypes/enemy.js" defer></script>
+    <script src="js/prototypes/boss.js" defer></script>
+    
+    <!-- 5. UI 매니저 (언어 파일 포함) -->
+    <script src="js/managers/lang/ko.js" defer></script>
+    <script src="js/managers/lang/en.js" defer></script>
+    <script src="js/managers/langLoader.js" defer></script>
+    <script src="js/managers/ui.js" defer></script>
+    
+    <!-- 6. 오디오 매니저 -->
+    <script src="js/managers/audio.js" defer></script>
+    
+    <!-- 7. 데이터베이스 매니저 -->
+    <script src="js/managers/database.js" defer></script>
+    
+    <!-- 8. 게임 컨트롤러 (모든 파일을 총괄) -->
+    <script src="js/gameController.js" defer></script>
+
+</body>
+</html>

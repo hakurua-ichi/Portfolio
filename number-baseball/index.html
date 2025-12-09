@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>숫자야구</title>
+
+    <link rel="stylesheet" href="css/number-baseball.css">
+  </head>
+
+  <body>
+    <div class="card">
+      <h1>숫자야구 게임</h1>
+      <div class="instruction">
+        4자리 숫자를 맞춰보세요! (중복 없음, 1-9 숫자만 사용)
+      </div>
+
+      <form id="form">
+        <input type="text" id="input" placeholder="숫자 입력" maxlength="9">
+        <button>확인</button>
+      </form>
+      <div id="logs"></div>
+
+      <div id="rules">
+        <h2>게임 규칙</h2>
+        <ol>
+          <li>1부터 9까지 서로 다른 숫자만 사용합니다.</li>
+          <li>자리수는 설정한 숫자(기본 4자리)로 고정됩니다.</li>
+          <li>같은 숫자를 중복해서 입력할 수 없습니다.</li>
+          <li>제출 후 스트라이크/볼/아웃 결과를 확인하세요.</li>
+          <li>기회를 모두 사용하면 게임이 종료됩니다.</li>
+        </ol>
+      </div>
+    </div>
+
+    <script src="js/number-baseball.js"></script>
+  </body>
+</html>

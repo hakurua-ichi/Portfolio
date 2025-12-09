@@ -1,0 +1,222 @@
+/* --- 1. 전역 설정 및 기본 스타일 --- */
+
+/* * box-sizing: border-box; 는 패딩과 테두리를 너비에 포함시켜 
+ * 레이아웃 계산을 훨씬 쉽게 만듭니다. (필수)
+ */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* * 전체 페이지를 어두운 테마(게임에 어울림)로 설정하고, 
+ * 윈도우(vh/vw) 기준으로 꽉 채웁니다.
+ */
+html, body {
+    width: 100vw;
+    height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    overflow: hidden; /* 스크롤바 방지 */
+    display: flex;
+    flex-direction: column; /* 헤더와 메인을 수직으로 배치 */
+}
+
+kbd { /* 조작법 키보드 스타일 */
+    background-color: #333;
+    border: 1px solid #555;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+button {
+    background-color: #4a4a4a;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: #6a6a6a;
+}
+
+/* --- 2. 헤더 (header.game-header) --- */
+.game-header {
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #252525;
+    display: flex;
+    justify-content: space-between; /* 3단 영역 배치 */
+    align-items: center;
+    border-bottom: 2px solid #444;
+    flex-shrink: 0; /* 헤더 높이 고정 */
+}
+
+.game-header .header-left,
+.game-header .header-middle,
+.game-header .header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* 내부 요소간 간격 */
+}
+
+#game-title {
+    font-size: 1.5em;
+    color: #fff;
+}
+
+/* --- 3. 메인 콘텐츠 (main.game-container) --- */
+.game-container {
+    width: 100%;
+    /* 남은 공간을 모두 차지하도록 설정 (중요) */
+    flex-grow: 1; 
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    gap: 20px; /* 각 영역 사이 간격 */
+    overflow: hidden; /* 이 영역도 스크롤 방지 */
+}
+
+/* --- 4. 왼쪽/오른쪽 사이드바 --- */
+.game-sidebar-left,
+.game-sidebar-right {
+    width: 20%; /* 너비를 20%로 고정 (창 크기에 따라 유동적) */
+    min-width: 200px; /* 최소 너비 보장 */
+    background-color: #2a2a2a;
+    padding: 20px;
+    border-radius: 8px;
+    overflow-y: auto; /* 내용 많아지면 스크롤 */
+    flex-shrink: 0;
+}
+
+.game-sidebar-left h2,
+.game-sidebar-right h2 {
+    border-bottom: 1px solid #444;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+#controls-list li {
+    list-style: none;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+
+/* --- 5. 가운데 게임 창 (Canvas) - 핵심 --- */
+
+.game-window-wrapper {
+    /* * flex-grow: 1; 로 설정하여 사이드바를 제외한 
+     * '남은 모든 가로 공간'을 차지하게 함.
+     */
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000; /* 레터박스(검은 바) 색상 */
+    border-radius: 8px;
+    overflow: hidden; /* 캔버스가 튀어나가지 않게 */
+}
+
+#game-canvas {
+    /* 캔버스 내부 해상도는 항상 1280x720으로 고정 */
+    /* CSS는 wrapper 크기에 맞춰 자동 스케일링 */
+    width: 100%;
+    height: 100%;
+    max-width: 1280px;
+    max-height: 720px;
+    display: block;
+    /* 중앙 정렬을 위해 margin auto 사용 */
+    margin: auto;
+    /* 브라우저의 이미지 스무딩 비활성화 */
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    /* 비율 유지 */
+    object-fit: contain;
+}
+
+/* --- 6. 리더보드 스타일 --- */
+#leaderboard-content {
+    font-size: 0.95em;
+    color: #eaeaea;
+}
+
+.leaderboard-list {
+    list-style: decimal inside; /* ol 숫자 스타일 */
+    padding-left: 12px;
+    margin-top: 8px;
+}
+
+.leaderboard-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 10px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border: 1px solid rgba(255,255,255,0.03);
+}
+
+.leaderboard-item .lb-name {
+    font-weight: 600;
+    color: #fff;
+}
+
+.leaderboard-item .lb-time {
+    color: #bde0a8;
+    margin-left: 12px;
+    min-width: 72px;
+    text-align: right;
+}
+
+.leaderboard-item .lb-stage {
+    color: #9ec5ff;
+    margin-left: 12px;
+    font-size: 0.85em;
+}
+
+.leaderboard-item:nth-child(-n+3) {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+/* Sound settings panel */
+#sound-settings {
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border: 1px solid rgba(255,255,255,0.03);
+}
+
+#sound-settings input[type="range"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    height: 6px;
+    background: linear-gradient(90deg,#4caf50,#2196f3);
+    border-radius: 6px;
+    outline: none;
+}
+
+#sound-settings input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+}
+
+/* Sidebar section (used for Controls and Sound Settings) */
+.sidebar-section {
+    background-color: #2a2a2a;
+    padding: 14px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+.sidebar-section h2 {
+    border-bottom: 1px solid #444;
+    padding-bottom: 8px;
+    margin-bottom: 10px;
+}

@@ -1,0 +1,11 @@
+{
+  "notes": [
+    { "time": 2.0, "column": 0, "type": "tap" },
+    { "time": 2.5, "column": 1, "type": "tap" },
+    { "time": 3.0, "column": 2, "type": "tap" },
+    { "time": 3.5, "column": 3, "type": "tap" },
+    { "time": 4.0, "column": 2, "type": "tap" },
+    { "time": 4.5, "column": 1, "type": "tap" },
+    { "time": 5.0, "column": 0, "type": "tap" }
+  ]
+}

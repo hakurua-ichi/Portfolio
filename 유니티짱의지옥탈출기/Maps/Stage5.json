@@ -1,0 +1,39 @@
+{
+  "stageNumber": 5,
+  "stageName": "Inferno's Peak - Tightrope II",
+  "background": "Assets/background/background5.jpg",
+  "playerStart": { "x": 640, "y": -9900 },
+  "mapBounds": { "width": 1280, "height": 5200, "minY": -12860 },
+  "platforms": [
+    { "x": 560, "y": -9900, "w": 200, "h": 28, "comment": "Start - 안전한 큰 발판 (Stage4 변형)" },
+    { "x": 760, "y": -10140, "w": 80, "h": 22, "comment": "좁은 발판 1 (수평 gap 증가)" },
+    { "x": 560, "y": -10420, "w": 140, "h": 22, "comment": "중앙 복귀 - 타이밍 요구" },
+    { "x": 420, "y": -10660, "w": 100, "h": 20, "comment": "작은 스텝 - 정밀 점프" },
+    { "x": 600, "y": -10960, "w": 160, "h": 24, "comment": "안정 구간 (중간 휴식)" },
+    { "x": 820, "y": -11160, "w": 90, "h": 20, "comment": "우측 좁음 - 대포 사거리 내" },
+    { "x": 660, "y": -11400, "w": 110, "h": 20, "comment": "중간 스텝 - 함정 회피 필요" },
+    { "x": 520, "y": -11630, "w": 80, "h": 18, "comment": "정밀 점프 포인트 (좁음)" },
+    { "x": 360, "y": -11860, "w": 140, "h": 24, "comment": "좌측 회복구간" },
+    { "x": 560, "y": -12090, "w": 100, "h": 20, "comment": "중앙 좁음 - 얼음 주변" },
+    { "x": 720, "y": -12300, "w": 120, "h": 22, "comment": "우측 접근 - 대포 경유" },
+    { "x": 520, "y": -12530, "w": 90, "h": 20, "comment": "정밀 플랫폼 - 최종 전 초소" },
+    { "x": 640, "y": -12760, "w": 200, "h": 30, "comment": "Goal platform - 넓음" }
+  ],
+  "obstacles": [
+    { "type": "cannon", "x": 950, "y": -10065, "w": 50, "h": 50, "rate": 2500, "dir": "left", "comment": "대포 - 초반 좁은 발판 경계" },
+    { "type": "lethalFloor", "x": 700, "y": -10490, "w": 120, "h": 10, "comment": "초반 트랩 - 착지 실패 시 위험" },
+    { "type": "wall", "x": 640, "y": -10700, "w": 30, "h": 160, "comment": "중간 벽 - 우회 필요" },
+    { "type": "cannon", "x": 820, "y": -11185, "w": 50, "h": 50, "rate": 1600, "dir": "left", "comment": "중간 대포 - 빠름" },
+    { "type": "iceFloor", "x": 560, "y": -12091, "w": 100, "h": 10, "comment": "중앙 얼음 - 플랫폼과 정렬" },
+    { "type": "lethalFloor", "x": 680, "y": -12310, "w": 120, "h": 10, "comment": "후반 함정 - 실수 시 리스폰" },
+    { "type": "cannon", "x": 110, "y": -12555, "w": 50, "h": 50, "rate": 2000, "dir": "right", "comment": "후반 대포 - 측면 압박" },
+
+    { "type": "spring", "x": 810, "y": -10061, "w": 30, "h": 20, "force": 12, "direction": "left", "comment": "발판 가장자리 스프링 - 측면 튕김 최소화" },
+    { "type": "cannon", "x": 620, "y": -11020, "w": 50, "h": 50, "rate": 1800, "dir": "left", "comment": "중반 스텝을 노리는 대포" },
+    { "type": "spring", "x": 680, "y": -12311, "w": 120, "h": 10, "force": 12, "direction": "right", "comment": "우측으로 튕김(후반)" },
+    { "type": "iceFloor", "x": 600, "y": -10960, "w": 160, "h": 10, "comment": "플랫폼(중앙 휴식) 위 얼음 — 플레이어 시작 근처 정렬" },
+    { "type": "iceFloor", "x": 520, "y": -11641, "w": 80, "h": 10, "comment": "정밀 플랫폼 위 얼음" },
+    { "type": "iceFloor", "x": 360, "y": -11871, "w": 140, "h": 10, "comment": "회복구간 위 얼음" },
+    { "type": "goal", "x": 640, "y": -12760, "w": 200, "h": 30, "comment": "Stage Goal - Final platform" }
+  ]
+}

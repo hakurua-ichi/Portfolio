@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Visual Chart Editor</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="editor-container">
+        <div class="canvas-wrapper" id="canvas-wrapper">
+            <canvas id="editor-canvas"></canvas>
+        </div>
+
+        <div class="sidebar">
+            <h2>CHART EDITOR</h2>
+            
+            <div class="panel-group">
+                <h3>1. Audio & Chart</h3>
+                <input type="file" id="audio-file" accept="audio/*">
+                <div class="status" id="status">No Audio</div>
+                <button id="btn-export">💾 SAVE JSON</button>
+                
+                <div style="margin-top:10px; border-top:1px solid #444; padding-top:5px;">
+                    <input type="file" id="json-file" accept="application/json" style="display:none">
+                    <button id="btn-import" onclick="document.getElementById('json-file').click()">📂 LOAD JSON</button>
+                </div>
+            </div>
+
+            <div class="panel-group">
+                <h3>2. Playback</h3>
+                <div class="time-display" id="time-display">0.000</div>
+                <div class="btn-row">
+                    <button id="btn-play">▶ Play (Space)</button>
+                    <button id="btn-stop">⏹ Stop</button>
+                </div>
+                <input type="range" id="seek-bar" value="0" step="0.01" style="width:100%; margin-top:10px;">
+                
+                <div class="hint" style="text-align:center; margin-top:5px;">
+                    <b>Z / X</b> : Seek -/+ 0.1s
+                </div>
+            </div>
+
+            <div class="panel-group">
+                <h3>3. Edit Note</h3>
+                <div class="info">
+                    Selected: <span id="sel-info" style="color:#00d2ff">None</span>
+                </div>
+                
+                <div style="margin-bottom: 10px;">
+                    <label style="font-size:12px; color:#aaa;">Move Step (sec):</label>
+                    <input type="number" id="edit-step" value="0.05" step="0.01" style="width:100%; padding:5px; background:#111; border:1px solid #555; color:#fff; margin-top:5px;">
+                </div>
+
+                <button id="btn-add-note">➕ Add Note (N)</button>
+                <button id="btn-delete" style="background:#ff3333">🗑 Delete (Del)</button>
+                
+                <div class="hint">
+                    <b>Click</b>: Select Note<br>
+                    <b>W / S</b>: Move Time<br>
+                    <b>Shift + W/S</b>: Adjust Duration<br>
+                    <b>A / D</b>: Change Lane<br>
+                    <b>N</b>: Add Note<br>
+                    <b>L</b>: Toggle Long Note
+                </div>
+            </div>
+            <div class="panel-group">
+                <h3>4. Auto Generator</h3>
+                
+                <div style="margin-bottom:10px;">
+                    <label class="hint">Threshold (Sensitivity):</label>
+                    <input type="range" id="auto-threshold" min="0.5" max="2.0" step="0.1" value="1.2">
+                    <span id="val-threshold" style="float:right; color:#0f0;">1.2</span>
+                </div>
+
+                <div style="margin-bottom:10px;">
+                    <label class="hint">Min Interval (Speed):</label>
+                    <input type="number" id="auto-interval" value="0.15" step="0.01" style="width:100%; background:#111; border:1px solid #555; color:#fff; padding:5px;">
+                </div>
+                
+                <div style="margin-bottom:10px;">
+                    <label class="hint">Long Note Chance (%):</label>
+                    <input type="number" id="long-note-chance" value="15" min="0" max="100" style="width:100%; background:#111; border:1px solid #555; color:#fff; padding:5px;">
+                </div>
+                
+                <!-- [신규] 패턴 생성 옵션 -->
+                <div style="margin-bottom:10px; padding:8px; background:#1a1a1a; border:1px solid #444; border-radius:4px;">
+                    <div class="hint" style="margin-bottom:5px; color:#00d2ff;">Pattern Options:</div>
+                    <label style="display:block; font-size:12px; color:#ccc;">
+                        <input type="checkbox" id="chk-smart-place" checked> Smart Placement (No Overlap)
+                    </label>
+                    <label style="display:block; font-size:12px; color:#ccc;">
+                        <input type="checkbox" id="chk-stairs"> Stairs (계단)
+                    </label>
+                    <label style="display:block; font-size:12px; color:#ccc;">
+                        <input type="checkbox" id="chk-drill"> Drill (드릴)
+                    </label>
+                    <label style="display:block; font-size:12px; color:#ccc;">
+                        <input type="checkbox" id="chk-chord"> Simultaneous (동시치기)
+                    </label>
+                </div>
+                
+                <div style="margin-bottom:10px; padding:8px; background:#1a1a1a; border:1px solid #444; border-radius:4px;">
+                    <div class="hint" style="margin-bottom:5px;">Detected BPM:</div>
+                    <div id="bpm-display" style="color:#0f0; font-size:18px; font-weight:bold;">-</div>
+                </div>
+
+                <button id="btn-auto-gen" style="background:#d35400;">⚡ Auto Generate</button>
+                <div class="hint" style="margin-top:5px;">
+                    Warning: This will overwrite current notes!
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/editor.js"></script>
+</body>
+</html>
